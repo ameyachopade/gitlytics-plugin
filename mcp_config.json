@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "gitlytics-cloud": {
+      "url": "https://api.gitlytics.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer ${GITLYTICS_API_KEY}"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "skill_name": "gitlytics-automation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a GitHub Actions workflow to automatically archive my GitHub repository traffic every week so I never lose data after 14 days.",
+      "expected_output": "Produces .github/workflows/gitlytics-traffic.yml using ameyachopade/gitlytics-github-traffic-automation@v1.2.0 with ${{ secrets.TRAFFIC_TOKEN }}, minimal contents: write permission, and public_only safety.",
+      "files": [],
+      "assertions": [
+        "Uses ${{ secrets.TRAFFIC_TOKEN }} and never hardcodes a token",
+        "Schedules more frequently than 14 days and includes workflow_dispatch",
+        "Sets minimal permissions: contents: write"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "How do I run the Gitlytics dashboard locally against my archived ./data CSV folder, and what do I need to watch out for if I expose it on my LAN?",
+      "expected_output": "Explains pip install \"gitlytics[dashboard]\", safe loopback default gitlytics dashboard --data-dir ./data, and warns that --public-bind disables preloaded tokens and requires an authenticated reverse proxy or private network.",
+      "files": [],
+      "assertions": [
+        "Mentions pip install \"gitlytics[dashboard]\"",
+        "Explains default 127.0.0.1 loopback binding",
+        "Warns about --public-bind disabling preloaded tokens and lacking built-in auth"
+      ]
+    }
+  ]
+}

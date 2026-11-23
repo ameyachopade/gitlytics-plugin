@@ -1,0 +1,27 @@
+{
+  "skill_name": "gitlytics-badges",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a clean README badge strip for my Python FastAPI + React + Docker repo 'ameyachopade/gitlytics' including a live PyPI badge for 'gitlytics' and a live stars badge in dracula theme with flat variant.",
+      "expected_output": "Calls search_tech_logos for python, fastapi, react, docker and calls build_widget_embed for each badge with theme=dracula and variant=flat.",
+      "files": [],
+      "assertions": [
+        "Every badge URL is validated through build_widget_embed",
+        "All badges share theme=dracula and variant=flat",
+        "Includes pypi_badge for gitlytics and live_badge for stars"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Generate Next.js, Node.js, Tailwind CSS, and PostgreSQL tech stack capsules plus a custom 'MCP Server' badge using clay variant and gitlytics-dark theme.",
+      "expected_output": "Resolves verified slugs (nextdotjs, nodedotjs, tailwindcss, postgresql) via search_tech_logos and uses static_badge for 'MCP Server' without inventing a fake slug.",
+      "files": [],
+      "assertions": [
+        "Uses nextdotjs and nodedotjs rather than hallucinated nextjs/nodejs slugs",
+        "Uses static_badge or non-logo capsule for MCP Server",
+        "All badges use theme=gitlytics-dark and variant=clay"
+      ]
+    }
+  ]
+}

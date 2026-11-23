@@ -1,0 +1,18 @@
+{
+  "name": "gitlytics",
+  "displayName": "Gitlytics",
+  "version": "1.0.0",
+  "description": "GitHub traffic analytics, star history, AI health scorecards, and dynamic SVG README cards and badges powered by Gitlytics.",
+  "logo": "assets/logo.png",
+  "author": {
+    "name": "Ameya Chopade",
+    "url": "https://gitlytics.dev"
+  },
+  "homepage": "https://docs.gitlytics.dev",
+  "repository": "https://github.com/ameyachopade/gitlytics",
+  "suggestedPrompts": [
+    "Audit my GitHub repository traffic trends, top referrers, and AI health score",
+    "Design a matching set of Gitlytics SVG profile cards and tech badges for my README",
+    "Set up automated traffic archiving so I never lose GitHub 14-day traffic data"
+  ]
+}

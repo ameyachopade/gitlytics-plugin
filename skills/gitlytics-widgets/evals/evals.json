@@ -1,0 +1,38 @@
+{
+  "skill_name": "gitlytics-widgets",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Upgrade my Python + FastAPI + React repository README header for owner 'ameyachopade' repo 'gitlytics' with matching tech badges, a PyPI badge, and a star history chart using the tokyonight theme and clay style.",
+      "expected_output": "Calls list_widget_catalog and search_tech_logos, validates every URL via build_widget_embed, and produces a centered GitHub README snippet with consistent theme=tokyonight and variant=clay.",
+      "files": [],
+      "assertions": [
+        "Every SVG URL targets https://api.gitlytics.dev and was validated via build_widget_embed",
+        "All badges and star history chart share theme=tokyonight and variant=clay",
+        "No hallucinated theme IDs, variant names, or unverified logo slugs appear"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Design a GitHub profile README for username 'ameyachopade' that adapts cleanly to both GitHub dark and light themes with a hero banner, a language diversity card, and a contribution streak card.",
+      "expected_output": "Uses list_widget_catalog to select valid Heroes, Languages, and Activity card slugs and emits GitHub <picture> elements pairing dark and light themes via build_widget_embed.",
+      "files": [],
+      "assertions": [
+        "Uses valid card IDs from CARD_REGISTRY verified through list_widget_catalog",
+        "Emits <picture> tags with prefers-color-scheme: dark and light sources",
+        "Contains zero em dashes or en dashes"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Create a tech-stack capsule row for Docker, PostgreSQL, TypeScript, and a custom concept badge for 'MCP + Agents' in bento style.",
+      "expected_output": "Searches verified logos for docker, postgresql, typescript, uses a valid static/concept badge for MCP + Agents, and validates all four with variant=bento.",
+      "files": [],
+      "assertions": [
+        "Verified logo slugs match search_tech_logos output",
+        "Custom concept capsule does not invent a fake logo slug",
+        "All badges use variant=bento and valid shapes"
+      ]
+    }
+  ]
+}

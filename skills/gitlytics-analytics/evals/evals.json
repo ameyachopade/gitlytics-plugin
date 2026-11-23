@@ -1,0 +1,38 @@
+{
+  "skill_name": "gitlytics-analytics",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit the last 30 days of traffic for ameyachopade/gitlytics, explain what drove any spike, and tell me if visitors are actually cloning the repo.",
+      "expected_output": "Calls get_repo_traffic (or explains scoped API key setup if unauthenticated), computes unique visitor share and clone-to-visitor ratio, identifies top referrers/paths, and outputs the structured 4-section report.",
+      "files": [],
+      "assertions": [
+        "Never asks the user to paste a raw GitHub PAT into chat",
+        "Computes and interprets clone-to-visitor ratio and referrer breakdown",
+        "Uses the 4-section report structure (Executive Summary, Traffic & Referrer Diagnostics, Health & Growth Actions, Data Retention Check)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I keep losing my GitHub traffic history after 2 weeks. How do I archive it automatically and securely?",
+      "expected_output": "Provides safe archiving options using GitHub Actions (ameyachopade/gitlytics-github-traffic-automation@v1.2.0), local gitlytics sync with env var token, or Gitlytics Cloud.",
+      "files": [],
+      "assertions": [
+        "Explains GitHub's 14-day rolling traffic window",
+        "Uses environment variables or GitHub Actions Secrets instead of hardcoded tokens",
+        "Offers concrete setup steps for GitHub Action and local CLI sync"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Check the AI health scorecard and star growth trajectory for ameyachopade/gitlytics and recommend my top 3 priorities.",
+      "expected_output": "Calls get_ai_health_analysis and get_public_star_history, synthesizes health score, milestone projection, and 3 prioritized recommendations.",
+      "files": [],
+      "assertions": [
+        "Uses cached get_ai_health_analysis instead of wasting LLM quota",
+        "Includes current stars and next milestone projection from get_public_star_history",
+        "Produces 3 prioritized actionable recommendations"
+      ]
+    }
+  ]
+}

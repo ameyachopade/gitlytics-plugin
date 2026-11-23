@@ -1,0 +1,33 @@
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+
+# Python caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Skill eval scratch outputs
+*-workspace/
+eval-workspace/
+.firecrawl/
+
+# Node / optional MCP App builds
+node_modules/
+dist/
+
+# Local code intelligence indexes
+.codegraph/
+graphify-out/
+
+# OS and editor artifacts
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+.vscode/
+.idea/
