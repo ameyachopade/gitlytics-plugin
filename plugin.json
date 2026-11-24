@@ -6,7 +6,7 @@
   "description": "GitHub traffic analytics, star history, AI health scorecards, and dynamic SVG README cards and badges powered by Gitlytics.",
   "logo": "assets/logo.png",
   "author": {
-    "name": "Ameya Chopade",
+    "name": "Gitlytics",
     "url": "https://gitlytics.dev"
   },
   "homepage": "https://docs.gitlytics.dev/mcp",
