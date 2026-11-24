@@ -46,7 +46,7 @@ Choose the endpoint that matches your workflow:
 * **Zero-Login Public Mode (5 public widget, badge, logo, profile & star-history tools immediately):** `https://api.gitlytics.dev/mcp`
 * **Headless / CI Fallback:** `https://api.gitlytics.dev/mcp` with a scoped `glt_live_...` API key from [dashboard.gitlytics.dev/integrations](https://dashboard.gitlytics.dev/integrations).
 
-**Antigravity / Cursor / Windsurf (`mcp_config.json` - 1-Click OAuth 2.1 Sign-In):**
+**Antigravity / Cursor / Windsurf / VS Code / OpenCode (`mcp_config.json` / `mcp.json` - 1-Click OAuth 2.1 Sign-In):**
 ```json
 {
   "mcpServers": {
@@ -70,13 +70,16 @@ Choose the endpoint that matches your workflow:
 }
 ```
 
-**Claude Code:**
+**CLI Agents (Claude Code / Codex):**
 ```bash
-# 1-click OAuth 2.1 sign-in (all 9 tools)
+# Claude Code - 1-click OAuth 2.1 sign-in (all 9 tools)
 claude mcp add --transport http gitlytics https://api.gitlytics.dev/mcp-oauth
 
-# Or zero-login public tools only
+# Claude Code - zero-login public tools only
 claude mcp add --transport http gitlytics https://api.gitlytics.dev/mcp
+
+# Codex - 1-click OAuth 2.1 sign-in
+codex mcp add gitlytics --url https://api.gitlytics.dev/mcp-oauth
 ```
 
 **Headless / CI API Key Fallback:**
@@ -171,9 +174,9 @@ python scripts/validate_plugin.py
 | **[gitlytics-npm](https://github.com/ameyachopade/gitlytics-npm)** | Zero-dependency Node.js CLI, JS/TS SDK, dual-mode MCP & local dashboard | [npm (`@gitlytics/cli`)](https://www.npmjs.com/package/@gitlytics/cli) |
 | **[gitlytics-plugin](https://github.com/ameyachopade/gitlytics-plugin)** *(this repo)* | Official Antigravity plugin, MCP configs & 4 Vercel Agent Skills | [skills.sh](https://skills.sh/ameyachopade/gitlytics-plugin) |
 | **[gitlytics-github-traffic-automation](https://github.com/ameyachopade/gitlytics-github-traffic-automation)** | Composite GitHub Action for automated CSV traffic backups | [GitHub Action](https://github.com/ameyachopade/gitlytics-github-traffic-automation) |
-| **[gitlytics-metadata-pages](https://github.com/ameyachopade/gitlytics-metadata-pages)** | Official Homepage, Docs Hub & Engineering Blog | [gitlytics.dev](https://gitlytics.dev) / [docs.gitlytics.dev](https://docs.gitlytics.dev) |
+| **Gitlytics Web & Docs** | Official Homepage, Docs Hub & Engineering Blog | [gitlytics.dev](https://gitlytics.dev) / [docs.gitlytics.dev](https://docs.gitlytics.dev) / [blog.gitlytics.dev](https://blog.gitlytics.dev) |
 | **Gitlytics Cloud Dashboard** | Hosted Analytics Dashboard, Embed Studio & MCP OAuth Consent UI | [dashboard.gitlytics.dev](https://dashboard.gitlytics.dev) |
-| **Gitlytics Hosted API & MCP** | 50-card / 200-logo SVG engine & Streamable HTTP MCP server (`/mcp`) | [api.gitlytics.dev](https://api.gitlytics.dev) |
+| **Gitlytics Hosted API & MCP** | 50-card / 200-logo SVG engine & Streamable HTTP MCP server (`/mcp-oauth` & `/mcp`) | [api.gitlytics.dev](https://api.gitlytics.dev) |
 
 ---
 

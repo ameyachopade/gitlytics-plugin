@@ -9,7 +9,7 @@
     "url": "https://gitlytics.dev"
   },
   "homepage": "https://docs.gitlytics.dev",
-  "repository": "https://github.com/ameyachopade/gitlytics",
+  "repository": "https://github.com/ameyachopade/gitlytics-plugin",
   "suggestedPrompts": [
     "Audit my GitHub repository traffic trends, top referrers, and AI health score",
     "Design a matching set of Gitlytics SVG profile cards and tech badges for my README",
