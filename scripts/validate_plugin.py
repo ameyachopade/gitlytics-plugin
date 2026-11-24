@@ -9,6 +9,7 @@ from pathlib import Path
 PLUGIN_ROOT = Path(__file__).resolve().parents[1]
 
 ALLOWED_PLUGIN_KEYS = {
+    "$schema",
     "name",
     "displayName",
     "version",
@@ -17,8 +18,12 @@ ALLOWED_PLUGIN_KEYS = {
     "author",
     "homepage",
     "repository",
+    "license",
+    "keywords",
+    "skills",
     "suggestedPrompts",
     "disabled",
+    "extensions",
 }
 ALLOWED_LOGO_SUFFIXES = {".png", ".svg", ".jpg", ".jpeg", ".webp"}
 KEBAB_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")

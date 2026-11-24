@@ -1,7 +1,6 @@
 {
   "mcpServers": {
     "gitlytics": {
-      "type": "http",
       "url": "https://api.gitlytics.dev/mcp-oauth"
     }
   }

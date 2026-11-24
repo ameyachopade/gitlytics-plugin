@@ -1,4 +1,5 @@
 {
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
   "name": "gitlytics",
   "displayName": "Gitlytics",
   "version": "1.0.0",
@@ -8,8 +9,19 @@
     "name": "Ameya Chopade",
     "url": "https://gitlytics.dev"
   },
-  "homepage": "https://docs.gitlytics.dev",
+  "homepage": "https://docs.gitlytics.dev/mcp",
   "repository": "https://github.com/ameyachopade/gitlytics-plugin",
+  "license": "Apache-2.0",
+  "keywords": [
+    "gitlytics",
+    "github",
+    "analytics",
+    "traffic",
+    "mcp",
+    "svg-badges",
+    "readme-widgets",
+    "star-history"
+  ],
   "suggestedPrompts": [
     "Audit my GitHub repository traffic trends, top referrers, and AI health score",
     "Design a matching set of Gitlytics SVG profile cards and tech badges for my README",
