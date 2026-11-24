@@ -6,11 +6,13 @@
 
 ### Official MCP Server Config, Agent Skills (`npx skills`), and Antigravity Plugin for Gitlytics
 
-[![MCP Spec](https://api.gitlytics.dev/api/badge/static.svg?label=MCP&message=2025-03-26%20Streamable%20HTTP&theme=gitlytics-dark&variant=clay)](https://api.gitlytics.dev/mcp)
-[![Agent Skills](https://api.gitlytics.dev/api/badge/tech.svg?slug=vercel&style=icon_label_value&label=skills.sh&value=4%20Agent%20Skills&theme=gitlytics-dark&variant=clay)](https://skills.sh/ameyachopade/gitlytics-plugin)
-[![License](https://api.gitlytics.dev/api/badge/static.svg?label=License&message=Apache%202.0&theme=gitlytics-dark&variant=clay)](LICENSE)
-[![Dashboard](https://api.gitlytics.dev/api/badge/static.svg?label=Dashboard&message=dashboard.gitlytics.dev&theme=gitlytics-dark&variant=clay)](https://dashboard.gitlytics.dev)
-[![Docs](https://api.gitlytics.dev/api/badge/static.svg?label=Docs&message=docs.gitlytics.dev&theme=gitlytics-dark&variant=clay)](https://docs.gitlytics.dev)
+<p align="center">
+  <a href="https://api.gitlytics.dev/mcp-oauth"><img src="https://api.gitlytics.dev/api/badge/static.svg?label=MCP&message=OAuth%202.1%20%2B%20Streamable%20HTTP&theme=gitlytics-dark&variant=clay" alt="MCP Spec" height="28" /></a>
+  <a href="https://skills.sh/ameyachopade/gitlytics-plugin"><img src="https://api.gitlytics.dev/api/badge/tech.svg?slug=vercel&style=icon_label_value&label=skills.sh&value=4%20Agent%20Skills&theme=gitlytics-dark&variant=clay" alt="Agent Skills" height="28" /></a>
+  <a href="LICENSE"><img src="https://api.gitlytics.dev/api/badge/static.svg?label=License&message=Apache%202.0&theme=gitlytics-dark&variant=clay" alt="License" height="28" /></a>
+  <a href="https://dashboard.gitlytics.dev"><img src="https://api.gitlytics.dev/api/badge/static.svg?label=Dashboard&message=dashboard.gitlytics.dev&theme=gitlytics-dark&variant=clay" alt="Dashboard" height="28" /></a>
+  <a href="https://docs.gitlytics.dev"><img src="https://api.gitlytics.dev/api/badge/static.svg?label=Docs&message=docs.gitlytics.dev&theme=gitlytics-dark&variant=clay" alt="Docs" height="28" /></a>
+</p>
 
 Connect **Antigravity**, **Claude Code**, **Cursor**, **Windsurf**, **Codex**, and **OpenCode** to Gitlytics' GitHub traffic analytics, star history, AI health scorecards, and 50-theme dynamic SVG README widgets.
 
@@ -37,33 +39,48 @@ npx skills add ameyachopade/gitlytics-plugin@gitlytics-analytics -g
 npx skills add ameyachopade/gitlytics-plugin@gitlytics-automation -g
 ```
 
-### 2. Connect the Hosted Cloud MCP Server (Zero Python / Zero Key Required for Public Tools)
+### 2. Connect the Hosted Cloud MCP Server (Zero Python / Zero Key Required)
 
-* **Endpoint:** `https://api.gitlytics.dev/mcp` (Streamable HTTP, MCP `2025-03-26`)
-* **Public widget, badge, logo & star-history tools** work immediately with **zero login and zero API key**.
-* **Private workspace traffic & AI health tools** support **OAuth 2.1 + PKCE direct sign-in** (automatic browser prompt in Antigravity, Claude Code, Cursor, VS Code) plus **scoped `glt_live_...` API keys** from [dashboard.gitlytics.dev/integrations](https://dashboard.gitlytics.dev/integrations) as a fallback for headless CI/CD.
+Choose the endpoint that matches your workflow:
+* **1-Click OAuth 2.1 Sign-In (All 9 tools - public + private workspace):** `https://api.gitlytics.dev/mcp-oauth`
+* **Zero-Login Public Mode (5 public widget, badge, logo, profile & star-history tools immediately):** `https://api.gitlytics.dev/mcp`
+* **Headless / CI Fallback:** `https://api.gitlytics.dev/mcp` with a scoped `glt_live_...` API key from [dashboard.gitlytics.dev/integrations](https://dashboard.gitlytics.dev/integrations).
 
-**Antigravity (Full Plugin Bundle):**
-Copy this repository into `~/.gemini/config/plugins/gitlytics/` to enable `plugin.json`, `mcp_config.json`, all 4 skills, and `rules/AGENTS.md` as a single unit.
-
-**Claude Code (Zero-Config OAuth Direct Sign-In):**
-```bash
-claude mcp add --transport http gitlytics https://api.gitlytics.dev/mcp
-```
-
-**Cursor / Windsurf (`mcp.json` - Zero-Config OAuth Direct Sign-In):**
+**Antigravity / Cursor / Windsurf (`mcp_config.json` - 1-Click OAuth 2.1 Sign-In):**
 ```json
 {
   "mcpServers": {
     "gitlytics": {
+      "type": "http",
+      "url": "https://api.gitlytics.dev/mcp-oauth"
+    }
+  }
+}
+```
+
+**Public Widgets & Badges Only (Zero Login Required):**
+```json
+{
+  "mcpServers": {
+    "gitlytics": {
+      "type": "http",
       "url": "https://api.gitlytics.dev/mcp"
     }
   }
 }
 ```
 
+**Claude Code:**
+```bash
+# 1-click OAuth 2.1 sign-in (all 9 tools)
+claude mcp add --transport http gitlytics https://api.gitlytics.dev/mcp-oauth
+
+# Or zero-login public tools only
+claude mcp add --transport http gitlytics https://api.gitlytics.dev/mcp
+```
+
 **Headless / CI API Key Fallback:**
-Pass `Authorization: Bearer ${GITLYTICS_API_KEY}` in your client's `headers` (or `--header "Authorization: Bearer ${GITLYTICS_API_KEY}"` in Claude Code).
+Pass `Authorization: Bearer ${GITLYTICS_API_KEY}` in your client's `headers` on `https://api.gitlytics.dev/mcp` (or `--header "Authorization: Bearer ${GITLYTICS_API_KEY}"` in Claude Code).
 
 ### 3. Optional Local/Offline Stdio Mode (`gitlytics[mcp]`)
 

@@ -2,7 +2,7 @@
   "mcpServers": {
     "mcp": {
       "type": "http",
-      "url": "https://api.gitlytics.dev/mcp"
+      "url": "https://api.gitlytics.dev/mcp-oauth"
     }
   }
 }
