@@ -95,8 +95,8 @@ def validate() -> list[str]:
             _fail(errors, f"{cfg_name} must define a non-empty mcpServers map")
             continue
         for srv_name, srv_cfg in servers.items():
-            if not srv_name.startswith("gitlytics"):
-                _fail(errors, f"{cfg_name} server '{srv_name}' must be prefixed with 'gitlytics'")
+            if srv_name != "mcp" and not srv_name.startswith("gitlytics"):
+                _fail(errors, f"{cfg_name} server '{srv_name}' must be 'mcp' or prefixed with 'gitlytics'")
             if not isinstance(srv_cfg, dict) or ("url" not in srv_cfg and "command" not in srv_cfg):
                 _fail(errors, f"{cfg_name} server '{srv_name}' must specify 'url' or 'command'")
 

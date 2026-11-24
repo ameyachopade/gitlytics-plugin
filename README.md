@@ -7,6 +7,7 @@
 ### Official MCP Server Config, Agent Skills (`npx skills`), and Antigravity Plugin for Gitlytics
 
 [![MCP Spec](https://api.gitlytics.dev/api/badge/static.svg?label=MCP&message=2025-03-26%20Streamable%20HTTP&theme=gitlytics-dark&variant=clay)](https://api.gitlytics.dev/mcp)
+[![Agent Skills](https://api.gitlytics.dev/api/badge/tech.svg?slug=vercel&style=icon_label_value&label=skills.sh&value=4%20Agent%20Skills&theme=gitlytics-dark&variant=clay)](https://skills.sh/ameyachopade/gitlytics-plugin)
 [![License](https://api.gitlytics.dev/api/badge/static.svg?label=License&message=Apache%202.0&theme=gitlytics-dark&variant=clay)](LICENSE)
 [![Dashboard](https://api.gitlytics.dev/api/badge/static.svg?label=Dashboard&message=dashboard.gitlytics.dev&theme=gitlytics-dark&variant=clay)](https://dashboard.gitlytics.dev)
 [![Docs](https://api.gitlytics.dev/api/badge/static.svg?label=Docs&message=docs.gitlytics.dev&theme=gitlytics-dark&variant=clay)](https://docs.gitlytics.dev)
@@ -36,34 +37,33 @@ npx skills add ameyachopade/gitlytics-plugin@gitlytics-analytics -g
 npx skills add ameyachopade/gitlytics-plugin@gitlytics-automation -g
 ```
 
-### 2. Connect the Hosted Cloud MCP Server (Zero Python / Zero PyPI Required)
+### 2. Connect the Hosted Cloud MCP Server (Zero Python / Zero Key Required for Public Tools)
 
 * **Endpoint:** `https://api.gitlytics.dev/mcp` (Streamable HTTP, MCP `2025-03-26`)
-* **Public widget & star-history tools** work immediately with **no API key**.
-* **Private workspace traffic & AI health tools** use a scoped, revocable `glt_live_...` API key created at [dashboard.gitlytics.dev/integrations](https://dashboard.gitlytics.dev/integrations).
+* **Public widget, badge, logo & star-history tools** work immediately with **zero login and zero API key**.
+* **Private workspace traffic & AI health tools** support **OAuth 2.1 + PKCE direct sign-in** (automatic browser prompt in Antigravity, Claude Code, Cursor, VS Code) plus **scoped `glt_live_...` API keys** from [dashboard.gitlytics.dev/integrations](https://dashboard.gitlytics.dev/integrations) as a fallback for headless CI/CD.
 
 **Antigravity (Full Plugin Bundle):**
-Copy this repository into `~/.gemini/config/plugins/gitlytics/` to enable `plugin.json`, `mcp_config.json`, both skills, and `rules/AGENTS.md` as a single unit.
+Copy this repository into `~/.gemini/config/plugins/gitlytics/` to enable `plugin.json`, `mcp_config.json`, all 4 skills, and `rules/AGENTS.md` as a single unit.
 
-**Claude Code:**
+**Claude Code (Zero-Config OAuth Direct Sign-In):**
 ```bash
-claude mcp add --transport http gitlytics https://api.gitlytics.dev/mcp \
-  --header "Authorization: Bearer ${GITLYTICS_API_KEY}"
+claude mcp add --transport http gitlytics https://api.gitlytics.dev/mcp
 ```
 
-**Cursor / Windsurf (`mcp.json`):**
+**Cursor / Windsurf (`mcp.json` - Zero-Config OAuth Direct Sign-In):**
 ```json
 {
   "mcpServers": {
     "gitlytics": {
-      "url": "https://api.gitlytics.dev/mcp",
-      "headers": {
-        "Authorization": "Bearer ${GITLYTICS_API_KEY}"
-      }
+      "url": "https://api.gitlytics.dev/mcp"
     }
   }
 }
 ```
+
+**Headless / CI API Key Fallback:**
+Pass `Authorization: Bearer ${GITLYTICS_API_KEY}` in your client's `headers` (or `--header "Authorization: Bearer ${GITLYTICS_API_KEY}"` in Claude Code).
 
 ### 3. Optional Local/Offline Stdio Mode (`gitlytics[mcp]`)
 
@@ -144,6 +144,24 @@ gitlytics-plugin/
 python scripts/validate_plugin.py
 ```
 
-## License
+---
 
-Licensed under the [Apache License 2.0](LICENSE).
+## 🔗 The Gitlytics Ecosystem
+
+| Project | Role | Link |
+| :--- | :--- | :--- |
+| **[gitlytics](https://github.com/ameyachopade/gitlytics)** | Core Python library, CLI (`fetch`, `sync`, `stars`, `dashboard`, `mcp`), and self-hosted local dashboard | [PyPI](https://pypi.org/project/gitlytics/) |
+| **[gitlytics-npm](https://github.com/ameyachopade/gitlytics-npm)** | Zero-dependency Node.js CLI, JS/TS SDK, dual-mode MCP & local dashboard | [npm (`@gitlytics/cli`)](https://www.npmjs.com/package/@gitlytics/cli) |
+| **[gitlytics-plugin](https://github.com/ameyachopade/gitlytics-plugin)** *(this repo)* | Official Antigravity plugin, MCP configs & 4 Vercel Agent Skills | [skills.sh](https://skills.sh/ameyachopade/gitlytics-plugin) |
+| **[gitlytics-github-traffic-automation](https://github.com/ameyachopade/gitlytics-github-traffic-automation)** | Composite GitHub Action for automated CSV traffic backups | [GitHub Action](https://github.com/ameyachopade/gitlytics-github-traffic-automation) |
+| **[gitlytics-metadata-pages](https://github.com/ameyachopade/gitlytics-metadata-pages)** | Official Homepage, Docs Hub & Engineering Blog | [gitlytics.dev](https://gitlytics.dev) / [docs.gitlytics.dev](https://docs.gitlytics.dev) |
+| **Gitlytics Cloud Dashboard** | Hosted Analytics Dashboard, Embed Studio & MCP OAuth Consent UI | [dashboard.gitlytics.dev](https://dashboard.gitlytics.dev) |
+| **Gitlytics Hosted API & MCP** | 50-card / 200-logo SVG engine & Streamable HTTP MCP server (`/mcp`) | [api.gitlytics.dev](https://api.gitlytics.dev) |
+
+---
+
+## 🤝 Contributing, Security & License
+
+- **Contributing**: See [`CONTRIBUTING.md`](CONTRIBUTING.md) for skill guidelines and validator checks.
+- **Security**: See [`SECURITY.md`](SECURITY.md) for credential safety and private vulnerability reporting.
+- **License**: Licensed under the [Apache License 2.0](LICENSE).

@@ -16,16 +16,16 @@ Turn GitHub traffic snapshots, star trajectories, and AI health diagnostics into
 ## Security Rules
 
 1. **Never ask for raw GitHub PATs in chat.**
-   - For **Gitlytics Cloud MCP** (`https://api.gitlytics.dev/mcp`): instruct the user to generate a scoped, revocable `glt_live_...` key at `https://dashboard.gitlytics.dev/integrations` and configure it in their MCP client headers (`Authorization: Bearer ${GITLYTICS_API_KEY}`).
-   - For **Local Stdio MCP** (`gitlytics mcp`): instruct the user to export `GITLYTICS_TOKEN` in their environment rather than passing secrets in prompts.
+   - For **Gitlytics Cloud MCP** (`https://api.gitlytics.dev/mcp`): public tools (`list_widget_catalog`, `search_tech_logos`, `build_widget_embed`, `get_public_github_profile`, `get_public_star_history`) require **zero login**. For private workspace tools, prefer **OAuth 2.1 + PKCE direct sign-in** in IDEs (zero config), or guide headless/CI users to mint a scoped `glt_live_...` key at `https://dashboard.gitlytics.dev/integrations` (`Authorization: Bearer ${GITLYTICS_API_KEY}`).
+   - For **Local Stdio MCP** (`uvx gitlytics mcp` or `npx -y @gitlytics/cli mcp --mode local`): instruct the user to export `GITLYTICS_TOKEN` in their environment rather than passing secrets in prompts.
 2. **Respect least privilege.** Request only `read:traffic` and `read:analysis` unless the user explicitly asks to trigger on-demand syncs (`write:refresh`).
 
 ## Workflow
 
 ### Step 1: Identify Available Mode
-- **Cloud Workspace Mode (default):** Call `list_connected_repos` to see tracked repositories and `last_synced_at`.
-  - If `auth_required` is returned, explain that public tools (`get_public_github_profile`, `get_public_star_history`) work immediately, and guide the user to mint a scoped `glt_live_...` key on `https://dashboard.gitlytics.dev/integrations` for private traffic/AI analysis.
-- **Local Vault Mode (`gitlytics-local` stdio):** Call `local_query_csv_vault` first (works 100% offline with zero token). Use `local_fetch_traffic` or `local_sync_archive` only when live GitHub refresh is needed.
+- **Cloud Workspace Mode (`gitlytics` HTTP MCP):** Call `list_connected_repos` to see tracked repositories and `last_synced_at`.
+  - If `401` / `auth_required` is returned, explain that public tools (`get_public_github_profile`, `get_public_star_history`, widget/badge tools) work immediately with zero auth, and guide the user to sign in via OAuth 2.1 in their MCP client (or mint a scoped `glt_live_...` key on `https://dashboard.gitlytics.dev/integrations` for headless clients).
+- **Local Vault Mode (`gitlytics-local` stdio via Python `uvx gitlytics mcp` or Node `npx -y @gitlytics/cli mcp --mode local`):** Call `local_query_csv_vault` first (works 100% offline with zero token). Use `local_fetch_traffic` or `local_sync_archive` only when live GitHub refresh is needed.
 
 ### Step 2: Gather Data Efficiently
 - **Traffic audit**: Call `get_repo_traffic(owner, repo, days=30)` (or `90` / `365` when looking beyond GitHub's 14-day window).

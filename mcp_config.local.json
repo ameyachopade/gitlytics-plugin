@@ -1,8 +1,8 @@
 {
   "mcpServers": {
-    "gitlytics-local": {
-      "command": "gitlytics",
-      "args": ["mcp", "--data-dir", "${PLUGIN_DATA}/vault"]
+    "mcp": {
+      "command": "python",
+      "args": ["-m", "gitlytics", "mcp", "--data-dir", "${PLUGIN_DATA}/vault"]
     }
   }
 }
