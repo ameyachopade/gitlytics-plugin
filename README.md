@@ -52,7 +52,7 @@ npx skills add ameyachopade/gitlytics-plugin@gitlytics-automation -g
 ### 2. Connect the Hosted Cloud MCP Server (Zero Python / Zero Key Required)
 
 Choose the endpoint that matches your workflow:
-* **1-Click OAuth 2.1 Sign-In (All 11 tools - public + private workspace):** `https://api.gitlytics.dev/mcp-oauth`
+* **1-Click OAuth 2.1 Sign-In (All 12 tools - public + private workspace):** `https://api.gitlytics.dev/mcp-oauth`
 * **Zero-Login Public Mode (6 public widget, batch badge, logo, profile & star-history tools immediately):** `https://api.gitlytics.dev/mcp`
 * **Headless / CI Fallback:** `https://api.gitlytics.dev/mcp` with a scoped `glt_live_...` API key from [dashboard.gitlytics.dev/integrations](https://dashboard.gitlytics.dev/integrations).
 
@@ -82,7 +82,7 @@ Choose the endpoint that matches your workflow:
 
 **CLI Agents (Claude Code / Codex):**
 ```bash
-# Claude Code - 1-click OAuth 2.1 sign-in (all 11 tools)
+# Claude Code - 1-click OAuth 2.1 sign-in (all 12 tools)
 claude mcp add --transport http gitlytics https://api.gitlytics.dev/mcp-oauth
 
 # Claude Code - zero-login public tools only
@@ -117,8 +117,8 @@ See [mcp_config.local.json](mcp_config.local.json) for the local stdio configura
 | :--- | :--- |
 | `list_widget_catalog` | Lists all 50 profile cards, 50 themes, 20 visual variants, shapes, and tech logo totals (supports `sections` and `compact` filters). |
 | `search_tech_logos` | Searches the 200 verified tech logo slugs by single `query` or batch `queries` (up to 25 technologies in 1 call, with alias resolution). |
-| `build_widget_embed` | Validates parameters and generates SVG URLs, Markdown, HTML, and light/dark `<picture>` embeds for a single widget (supports `href` and `format`). |
-| `build_widget_batch` | Validates and generates up to 30 badges, cards, or charts in 1 call with shared `defaults`, README `layout` assembly, and partial error recovery. |
+| `build_widget_embed` | Validates parameters and generates SVG URLs, Markdown, HTML, and light/dark `<picture>` embeds for a single widget (cards, tech/static/live/PyPI/npm/skills badges, logos, charts, star history; supports `href` and `format`). |
+| `build_widget_batch` | Validates and generates up to 30 badges, cards, logos, or charts in 1 call with shared `defaults`, README `layout` assembly, `include_items`, and partial error recovery. |
 | `get_public_github_profile` | Fetches cached public GitHub user stats and top public repositories. |
 | `get_public_star_history` | Returns cached cumulative star history and next star milestone projection. |
 
@@ -127,10 +127,23 @@ See [mcp_config.local.json](mcp_config.local.json) for the local stdio configura
 | Tool | Required Scope | Purpose |
 | :--- | :--- | :--- |
 | `list_connected_repos` | `read:traffic` | Lists repositories connected to your Gitlytics Cloud workspace. |
-| `get_workspace_summary` | `read:traffic` | Aggregates views, visitors, clones, stars, and forks across all connected repositories in 1 call. |
+| `get_workspace_summary` | `read:traffic` | Aggregates views, visitors, clones, stars, forks, and optional cached AI health scores (`include_health=true`, requires `read:analysis`) across all connected repositories in 1 call. |
 | `get_repo_traffic` | `read:traffic` | Queries archived views, unique visitors, clones, referrers, and top paths (up to 365 days; supports `daily`, `weekly`, or `summary` granularity). |
-| `get_ai_health_analysis` | `read:analysis` | Reads cached AI health scorecards, key areas, dev focus, and recommendations. |
+| `get_ai_health_analysis` | `read:analysis` | Reads cached AI health scorecards, key areas, dev focus, and recommendations (falls back to last saved run with `stale: true` if >24h old). |
+| `trigger_ai_analysis` | `write:refresh` | Runs an on-demand Deep AI Health Analysis when no fresh (<24h) cache exists (6h per-repo cooldown + daily budget). |
 | `trigger_repo_refresh` | `write:refresh` | Triggers a cooldown-bounded on-demand traffic sync from GitHub. |
+
+### Interactive MCP Apps (SEP-1865)
+
+Clients that support MCP Apps (`text/html;profile=mcp-app`, such as Antigravity) automatically render interactive UI views while CLI and text-only agents continue receiving compact structured JSON:
+
+| MCP App (`ui://` Resource) | Triggered By | Highlights |
+| :--- | :--- | :--- |
+| **Gitlytics Traffic Dashboard** (`ui://gitlytics/traffic-dashboard.html`) | `get_workspace_summary`, `get_repo_traffic` | Interactive Line/Bar charts with click-to-pin HUD, Views/Uniques/Clones/Avg toggles, clickable Referrers & Paths, Star History curve, AI Health sub-tab, Markdown export, and both Side Pane (`aux_pane`) + Full-Page Sidebar (`global`) entrypoints. |
+| **Gitlytics AI Health Scorecard** (`ui://gitlytics/health-scorecard.html`) | `get_ai_health_analysis`, `trigger_ai_analysis` | Radial health gauge with tier badge, expandable directory Key Areas, interactive Action Checklist with progress bar and per-item chat actions, plus an on-demand Traffic Snapshot tab. |
+| **Gitlytics Badge & Widget Studio** (`ui://gitlytics/badge-studio.html`) | `build_widget_embed`, `build_widget_batch` | Dynamic catalog loading (all 50 themes, 20 variants, valid shapes), searchable warm popover dropdowns, Dark/Light/Clay/Grid canvases, Zoom, Dual Light/Dark Split View, per-item batch reordering, and live `+ Add Tech Badge` search composer. |
+
+All three apps also implement SEP-1865 `inline`, `fullscreen`, and `pip` display mode negotiation automatically when advertised by the host.
 
 ### MCP Resources & Prompts
 
@@ -138,6 +151,7 @@ See [mcp_config.local.json](mcp_config.local.json) for the local stdio configura
   * `gitlytics://catalog/widgets` - Complete JSON catalog of cards, variants, and shapes.
   * `gitlytics://catalog/themes` - Complete JSON catalog of all 50 unified themes.
   * `gitlytics://catalog/logos` - Complete JSON catalog of all verified technology SVG logos.
+  * `gitlytics://catalog/logos/{category}` & `gitlytics://catalog/cards/{category}` - Category-filtered resource templates.
 * **Prompts:** `create_badge_row`, `upgrade_readme`, `audit_repo_traffic`.
 
 ---

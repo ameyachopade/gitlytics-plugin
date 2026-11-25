@@ -28,9 +28,9 @@ Turn GitHub traffic snapshots, star trajectories, and AI health diagnostics into
 - **Local Vault Mode (`gitlytics-local` stdio via Python `uvx gitlytics mcp` or Node `npx -y @gitlytics/cli mcp --mode local`):** Call `local_query_csv_vault` first (works 100% offline with zero token). Use `local_fetch_traffic` or `local_sync_archive` only when live GitHub refresh is needed.
 
 ### Step 2: Gather Data Efficiently
-- **Workspace overview (multi-repo)**: Call `get_workspace_summary(days=30)` to aggregate traffic and stars across all connected repositories in 1 call instead of looping per repo.
+- **Workspace overview (multi-repo)**: Call `get_workspace_summary(days=30, include_health=True)` to aggregate traffic, stars, and cached AI health scores across all connected repositories in 1 call instead of looping per repo.
 - **Single-repo traffic audit**: Call `get_repo_traffic(owner, repo, days=30)` (or `90` / `365` with `granularity="weekly"` or `"summary"` to keep context compact when looking beyond GitHub's 14-day window).
-- **Health scorecard**: Call `get_ai_health_analysis(owner, repo, days=30, include_history=True)` to inspect `health_score`, `ai_overview`, `ai_key_areas`, `ai_dev_focus`, and `ai_recommendations` without burning extra LLM quota.
+- **Health scorecard**: Call `get_ai_health_analysis(owner, repo, days=30, include_history=True)` first (0 LLM quota; returns stale saved run if >24h old). If no analysis exists yet or the user explicitly wants a fresh run, call `trigger_ai_analysis(owner, repo, days=30)` (6h per-repo cooldown, requires `write:refresh`).
 - **Star trajectory**: Call `get_public_star_history(owner, repo)` to calculate milestone ETA and correlate star surges with referrer spikes.
 - **On-demand refresh**: Call `trigger_repo_refresh(owner, repo)` only when the user explicitly requests a fresh sync (note the 5-minute per-repo cooldown).
 

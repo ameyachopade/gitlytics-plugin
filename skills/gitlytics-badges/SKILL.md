@@ -33,8 +33,9 @@ Inspect `package.json`, `pyproject.toml`, `requirements.txt`, `Cargo.toml`, `go.
 Call `build_widget_batch` with shared `defaults` (e.g. `theme`, `variant`, `shape`, `owner`, `repo`), `format="markdown"` (or `"html"` / `"picture"`), `layout="inline_markdown"` (or `"centered_html"`), and up to 30 `items`:
 - **Tech stack capsule (`kind="tech_badge"`)**: `slug`, `style="icon_label_value"` (or `"icon_label"`), `label`, `value`, optional `href`.
 - **Static status / license / link badge (`kind="static_badge"`)**: `label`, `message`, optional `slug`, `color`, `href`.
-- **Live GitHub repo metric (`kind="live_badge"`)**: `owner`, `repo`, `metric` (`views`, `clones`, or `stars`), optional `href`.
-- **Live PyPI version (`kind="pypi_badge"`)**: `package_name`, optional `label="PyPI"`, `href`.
+- **Live GitHub repo metric (`kind="live_badge"`)**: `owner`, `repo`, `metric` (`views`, `clones`, or `stars`), optional `color`, `hide_border`, `href`.
+- **Live PyPI / npm / skills.sh version badges**: `kind="pypi_badge"` (`package_name`), `kind="npm_badge"` (`package_name`, supports scoped `@org/pkg`), `kind="skills_badge"` (`owner`, `repo`, optional `skills_path`), optional `label`, `color`, `hide_border`, `href`.
+- **Standalone logo icon (`kind="logo"`)**: `slug`, `shape`, optional `color`, `width`.
 
 For a single standalone badge, call `build_widget_embed` directly.
 
