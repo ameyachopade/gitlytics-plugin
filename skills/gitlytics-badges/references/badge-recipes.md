@@ -1,6 +1,29 @@
 # Gitlytics Badge Strip Recipes
 
-Use these patterns with validated URLs returned by `build_widget_embed`.
+Use these patterns with validated embeds returned by `build_widget_batch` (preferred for 2+ badges) or `build_widget_embed` (for a single badge).
+
+## 0. One-Call Batch Badge Row (`build_widget_batch`)
+
+Pass shared styling once in `defaults` and set `layout="inline_markdown"` or `layout="centered_html"` to get a ready-to-paste `combined_snippet`:
+
+```json
+{
+  "defaults": {
+    "theme": "gitlytics-dark",
+    "variant": "clay",
+    "owner": "owner",
+    "repo": "repo"
+  },
+  "format": "markdown",
+  "layout": "inline_markdown",
+  "items": [
+    {"kind": "tech_badge", "slug": "python", "href": "https://python.org"},
+    {"kind": "tech_badge", "slug": "fastapi"},
+    {"kind": "live_badge", "metric": "stars"},
+    {"kind": "static_badge", "label": "License", "message": "Apache 2.0"}
+  ]
+}
+```
 
 ## 1. Repository Header Status Strip (PyPI + License + Live Metrics)
 
