@@ -1,18 +1,28 @@
 <div align="center">
 
-<img src="assets/logo.png" alt="Gitlytics Logo" width="120" />
+<img src="https://raw.githubusercontent.com/ameyachopade/gitlytics/main/assets/logo.png" alt="Gitlytics Logo" width="140" />
 
 # Gitlytics Agent Plugin & Skills
 
 ### Official MCP Server Config, Agent Skills (`npx skills`), and Antigravity Plugin for Gitlytics
 
-<p align="center">
-  <a href="https://api.gitlytics.dev/mcp-oauth"><img src="https://api.gitlytics.dev/api/badge/static.svg?label=MCP&message=OAuth%202.1%20%2B%20Streamable%20HTTP&theme=gitlytics-dark&variant=clay" alt="MCP Spec" height="28" /></a>
-  <a href="https://skills.sh/ameyachopade/gitlytics-plugin"><img src="https://api.gitlytics.dev/api/badge/tech.svg?slug=vercel&style=icon_label_value&label=skills.sh&value=4%20Agent%20Skills&theme=gitlytics-dark&variant=clay" alt="Agent Skills" height="28" /></a>
-  <a href="LICENSE"><img src="https://api.gitlytics.dev/api/badge/static.svg?label=License&message=Apache%202.0&theme=gitlytics-dark&variant=clay" alt="License" height="28" /></a>
-  <a href="https://dashboard.gitlytics.dev"><img src="https://api.gitlytics.dev/api/badge/static.svg?label=Dashboard&message=dashboard.gitlytics.dev&theme=gitlytics-dark&variant=clay" alt="Dashboard" height="28" /></a>
-  <a href="https://docs.gitlytics.dev"><img src="https://api.gitlytics.dev/api/badge/static.svg?label=Docs&message=docs.gitlytics.dev&theme=gitlytics-dark&variant=clay" alt="Docs" height="28" /></a>
-</p>
+<!-- GITLYTICS:ECOSYSTEM_BADGES:START -->
+[![PyPI](https://api.gitlytics.dev/api/badge/pypi/gitlytics.svg?label=PyPI&color=E25A1C&theme=gitlytics-dark&variant=clay)](https://pypi.org/project/gitlytics/)
+[![npm](https://api.gitlytics.dev/api/badge/npm/@gitlytics/cli.svg?label=npm&color=E25A1C&theme=gitlytics-dark&variant=clay)](https://www.npmjs.com/package/@gitlytics/cli)
+[![License](https://api.gitlytics.dev/api/badge/static.svg?label=License&message=Apache+2.0&color=334155&theme=gitlytics-dark&variant=clay)](LICENSE)
+[![Agent Skills](https://api.gitlytics.dev/api/badge/skills/ameyachopade/gitlytics-plugin.svg?label=skills.sh&color=334155&theme=gitlytics-dark&variant=clay)](https://skills.sh/ameyachopade/gitlytics-plugin)
+[![MCP](https://api.gitlytics.dev/api/badge/static.svg?label=MCP&message=OAuth+2.1&color=E25A1C&theme=gitlytics-dark&variant=clay)](https://docs.gitlytics.dev/mcp)
+
+<br/>
+
+[![Home](https://api.gitlytics.dev/api/badge/static.svg?label=Site&message=gitlytics.dev&color=334155&theme=gitlytics-dark&variant=clay)](https://gitlytics.dev)
+[![Dashboard](https://api.gitlytics.dev/api/badge/static.svg?label=App&message=dashboard.gitlytics.dev&color=334155&theme=gitlytics-dark&variant=clay)](https://dashboard.gitlytics.dev)
+[![Widgets](https://api.gitlytics.dev/api/badge/static.svg?label=Widgets&message=widgets.gitlytics.dev&color=334155&theme=gitlytics-dark&variant=clay)](https://widgets.gitlytics.dev)
+[![Docs](https://api.gitlytics.dev/api/badge/static.svg?label=Docs&message=docs.gitlytics.dev&color=334155&theme=gitlytics-dark&variant=clay)](https://docs.gitlytics.dev)
+[![Blog](https://api.gitlytics.dev/api/badge/static.svg?label=Blog&message=blog.gitlytics.dev&color=334155&theme=gitlytics-dark&variant=clay)](https://blog.gitlytics.dev)
+<!-- GITLYTICS:ECOSYSTEM_BADGES:END -->
+
+<br/>
 
 Connect **Antigravity**, **Claude Code**, **Cursor**, **Windsurf**, **Codex**, and **OpenCode** to Gitlytics' GitHub traffic analytics, star history, AI health scorecards, and 50-theme dynamic SVG README widgets.
 
