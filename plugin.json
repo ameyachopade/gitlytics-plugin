@@ -3,29 +3,31 @@
   "name": "gitlytics",
   "displayName": "Gitlytics",
   "version": "1.1.0",
-  "description": "Interactive MCP Apps, GitHub traffic analytics, star history, AI health scorecards, and 50-theme dynamic SVG README cards and badges powered by Gitlytics.",
+  "description": "Git Intelligence for Teams & AI Agents: 3 interactive 4-mode MCP Apps (Workspace, AI Health, Widget Studio), persistent repository telemetry, anomaly intelligence, and 50-theme SVG/2x PNG README widgets.",
   "logo": "assets/logo.png",
   "author": {
     "name": "Gitlytics",
     "url": "https://gitlytics.dev"
   },
-  "homepage": "https://docs.gitlytics.dev/mcp",
+  "homepage": "https://docs.gitlytics.dev/docs/mcp",
   "repository": "https://github.com/ameyachopade/gitlytics-plugin",
   "license": "Apache-2.0",
   "keywords": [
     "gitlytics",
+    "git-intelligence",
     "github",
     "analytics",
     "traffic",
     "mcp",
     "mcp-apps",
     "svg-badges",
+    "png-cards",
     "readme-widgets",
     "star-history"
   ],
   "suggestedPrompts": [
-    "Audit my GitHub repository traffic trends, top referrers, and AI health score",
-    "Design a matching set of Gitlytics SVG profile cards and tech badges for my README",
-    "Set up automated traffic archiving so I never lose GitHub 14-day traffic data"
+    "Open Gitlytics Workspace and audit my repository telemetry, traffic anomalies, and AI health score",
+    "Launch Gitlytics Widget Studio to design matching Clay SVG and 2x PNG badges for my README",
+    "Set up automated traffic archiving and pure-Git local analysis with gitlytics analyze ."
   ]
 }

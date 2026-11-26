@@ -24,7 +24,7 @@
 
 <br/>
 
-Connect **Antigravity**, **Claude Code**, **Cursor**, **Windsurf**, **Codex**, and **OpenCode** to Gitlytics' GitHub traffic analytics, star history, AI health scorecards, and 50-theme dynamic SVG README widgets.
+Connect **Antigravity**, **Claude Code**, **Cursor**, **Windsurf**, **Codex**, and **OpenCode** to Gitlytics' Git Intelligence platform: 3 interactive 4-mode MCP Apps (**Workspace**, **AI Health**, **Widget Studio**), persistent repository telemetry, anomaly signals, and 50-theme SVG/2x PNG README widgets.
 
 </div>
 
